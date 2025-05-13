@@ -141,7 +141,8 @@
 
     const quiz = document.getElementById("quiz");
     const result = document.getElementById("result");
-const descriptions = {
+    
+    const descriptions = {
       "冲动型": {
         title: "你是【冲动型】：决策快，但常后悔",
         desc: "你倾向于快速做决定，但事后常感到后悔。你做事讲究效率，但有时缺乏深思熟虑。你的优势在于果断，缺点在于容易受情绪驱动而忽略后果。",
@@ -168,6 +169,7 @@ const descriptions = {
         suggestion: "建议你保持每月一次的复盘写作，记录成长点与失败点，系统梳理成长轨迹。"
       }
     };
+    
     function renderQuestion() {
       const q = questions[current];
       quiz.innerHTML = `<div class="question"><h2>${q.text}</h2><div class="options"></div></div>`;
@@ -199,7 +201,9 @@ const descriptions = {
   "成长型": "/replay-test-game/img/growth.png"
       };
       result.classList.remove("hidden");
-      result.innerHTML = `<h2>你的类型是：${maxTag}</h2><img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br><button id='restart'>再测一次</button>`;
+  
+  
+      result.innerHTML = `<h2>你的类型是：${maxTag}</h2><img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><p>${data.desc}</p><br><button id='restart'>再测一次</button>`;
       document.getElementById("restart").onclick = () => location.reload();
     }
 
