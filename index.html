@@ -205,9 +205,14 @@
       result.classList.remove("hidden");
   
   
-      result.innerHTML = `<h2>你的类型是：${maxTag}</h2><img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br><p>${data.desc}</p>
+     result.innerHTML = `
+        <h2>${data.title}</h2>
+        <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br>
+        <p>${data.desc}</p>
         <h3>🌱 行动建议：</h3>
-        <p>${data.suggestion}</p><button id='restart'>再测一次</button>`;
+        <p>${data.suggestion}</p>
+        <button id='restart'>再测一次</button>
+      `;
       document.getElementById("restart").onclick = () => location.reload();
     }
 
