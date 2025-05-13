@@ -203,7 +203,7 @@
       result.classList.remove("hidden");
   
   
-      result.innerHTML = `<h2>你的类型是：${maxTag}</h2><img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><p>${data.desc}</p><br><button id='restart'>再测一次</button>`;
+      result.innerHTML = `<h2>你的类型是：${maxTag}</h2><img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br><button id='restart'>再测一次</button>`;
       document.getElementById("restart").onclick = () => location.reload();
     }
 
