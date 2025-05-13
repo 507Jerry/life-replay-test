@@ -166,11 +166,11 @@
       quiz.classList.add("hidden");
       const maxTag = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
       const imageMap = {
-        "冲动型": "img/impulsive.png",
-        "拖延型": "img/delayer.png",
-        "内耗型": "img/internal.png",
-        "反复型": "img/repeat.png",
-        "成长型": "img/growth.png"
+        "冲动型": "/replay-test-game/img/impulsive.png",
+  "拖延型": "/replay-test-game/img/delayer.png",
+  "内耗型": "/replay-test-game/img/internal.png",
+  "反复型": "/replay-test-game/img/repeat.png",
+  "成长型": "/replay-test-game/img/growth.png"
       };
       result.classList.remove("hidden");
       result.innerHTML = `<h2>你的类型是：${maxTag}</h2><img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br><button id='restart'>再测一次</button>`;
