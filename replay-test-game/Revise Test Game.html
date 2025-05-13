@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人生复盘测评</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f5f7fa; color: #333; }
+    .question { margin-bottom: 2rem; }
+    .options button {
+      display: block; margin: 0.5rem 0; padding: 1rem;
+      width: 100%; font-size: 1rem;
+      background: white; border: 1px solid #ccc; border-radius: 6px;
+    }
+    .hidden { display: none; }
+    #result { padding: 2rem; background: white; border-radius: 8px; text-align: center; }
+    #result img { max-width: 100%; border-radius: 10px; margin-top: 1rem; }
+    #restart { margin-top: 1.5rem; padding: 0.8rem 1.5rem; border: none; background: #007aff; color: white; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <h1>你是哪种人生错误循环者？</h1>
+  <div id="quiz"></div>
+  <div id="result" class="hidden"></div>
+
+  <script>
+    const questions = [
+      {
+        text: "当你面对突发事件时，你会：",
+        options: [
+          { text: "马上做决定", tag: "冲动型" },
+          { text: "拖到不能再拖才应对", tag: "拖延型" },
+          { text: "先焦虑一番再勉强应对", tag: "内耗型" },
+          { text: "回避，不处理", tag: "反复型" },
+        ]
+      },
+      {
+        text: "分手/失业后，你的第一个反应是：",
+        options: [
+          { text: "开始新的尝试", tag: "成长型" },
+          { text: "找前任/旧老板复盘问题", tag: "成长型" },
+          { text: "自责+沉溺负面情绪", tag: "内耗型" },
+          { text: "花钱/刷视频缓解", tag: "冲动型" },
+        ]
+      },
+      {
+        text: "每次失败后，你会：",
+        options: [
+          { text: "反复告诉自己“我不该这样做”", tag: "内耗型" },
+          { text: "下次还做一样的事", tag: "反复型" },
+          { text: "写总结并避免", tag: "成长型" },
+          { text: "骂自己几句然后继续前进", tag: "冲动型" },
+        ]
+      },
+      {
+        text: "面对需要选择的购物决策，你：",
+        options: [
+          { text: "秒下单，事后后悔", tag: "冲动型" },
+          { text: "看了又看，迟迟不下单", tag: "拖延型" },
+          { text: "抓一个朋友咨询后照做", tag: "反复型" },
+          { text: "做预算、对比后再买", tag: "成长型" },
+        ]
+      },
+      {
+        text: "你和伴侣吵架后，你会：",
+        options: [
+          { text: "拉黑/冷处理", tag: "冲动型" },
+          { text: "忍着但心理内耗", tag: "内耗型" },
+          { text: "每次都这样，也习惯了", tag: "反复型" },
+          { text: "回想争执根源、改善沟通方式", tag: "成长型" },
+        ]
+      },
+      {
+        text: "面对重要考试/面试，你：",
+        options: [
+          { text: "临时抱佛脚", tag: "冲动型" },
+          { text: "拖延准备，直到前一天才行动", tag: "拖延型" },
+          { text: "焦虑+失眠+脑内过度模拟", tag: "内耗型" },
+          { text: "制定计划、按部就班复习", tag: "成长型" },
+        ]
+      },
+      {
+        text: "如果过去3个月你做错了一件事，你更可能：",
+        options: [
+          { text: "忘了", tag: "冲动型" },
+          { text: "重复做同样的事", tag: "反复型" },
+          { text: "会复盘，但下次不一定改", tag: "内耗型" },
+          { text: "写下来避免重犯", tag: "成长型" },
+        ]
+      },
+      {
+        text: "每次情绪低落时你会：",
+        options: [
+          { text: "玩手机/喝酒/购物", tag: "冲动型" },
+          { text: "拖着不处理", tag: "拖延型" },
+          { text: "一边想太多一边什么都不做", tag: "内耗型" },
+          { text: "找人倾诉或记录情绪原因", tag: "成长型" },
+        ]
+      },
+      {
+        text: "你觉得最常困住你的是？",
+        options: [
+          { text: "忍不住行动", tag: "冲动型" },
+          { text: "拖延+错过时机", tag: "拖延型" },
+          { text: "情绪内耗过重", tag: "内耗型" },
+          { text: "总是回到旧问题", tag: "反复型" },
+        ]
+      },
+      {
+        text: "如果人生可以回溯，你最希望改的是？",
+        options: [
+          { text: "那些冲动的决定", tag: "冲动型" },
+          { text: "曾经浪费的时间", tag: "拖延型" },
+          { text: "犹豫+纠结错失的机会", tag: "内耗型" },
+          { text: "一直重复犯的错误", tag: "反复型" },
+        ]
+      },
+      {
+        text: "面对他人建议你通常：",
+        options: [
+          { text: "听一半就按自己方式做", tag: "冲动型" },
+          { text: "拖着不动", tag: "拖延型" },
+          { text: "照做却内心抗拒", tag: "内耗型" },
+          { text: "结合现实后理性采纳", tag: "成长型" },
+        ]
+      },
+      {
+        text: "你是否有写过类似复盘总结的记录？",
+        options: [
+          { text: "没写过", tag: "反复型" },
+          { text: "写过1~2次后放弃了", tag: "内耗型" },
+          { text: "正在持续记录中", tag: "成长型" },
+          { text: "每次做完就忘", tag: "冲动型" },
+        ]
+      },
+    ];
+
+    const scores = { "冲动型": 0, "拖延型": 0, "内耗型": 0, "反复型": 0, "成长型": 0 };
+    let current = 0;
+
+    const quiz = document.getElementById("quiz");
+    const result = document.getElementById("result");
+
+    function renderQuestion() {
+      const q = questions[current];
+      quiz.innerHTML = `<div class="question"><h2>${q.text}</h2><div class="options"></div></div>`;
+      const optionsDiv = quiz.querySelector(".options");
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt.text;
+        btn.onclick = () => {
+          scores[opt.tag]++;
+          current++;
+          if (current < questions.length) {
+            renderQuestion();
+          } else {
+            showResult();
+          }
+        };
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      quiz.classList.add("hidden");
+      const maxTag = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const imageMap = {
+        "冲动型": "img/impulsive.png",
+        "拖延型": "img/delayer.png",
+        "内耗型": "img/internal.png",
+        "反复型": "img/repeat.png",
+        "成长型": "img/growth.png"
+      };
+      result.classList.remove("hidden");
+      result.innerHTML = `<h2>你的类型是：${maxTag}</h2><img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br><button id='restart'>再测一次</button>`;
+      document.getElementById("restart").onclick = () => location.reload();
+    }
+
+    renderQuestion();
+  </script>
+
+</body>
+</html>
