@@ -177,7 +177,8 @@
       `;
       document.getElementById("restart").onclick = () => location.reload();
 
-       // ✅ 上传数据到 Google 表格
+       
+  // 🔽 现在插入这段上传代码
   fetch("https://api.sheety.co/7b136ddd068b2f5ee3c7063a6a760256/test/sheet1", {
     method: "POST",
     headers: {
@@ -195,9 +196,12 @@
       }
     })
   })
-  .then(res => console.log("✅ 数据上传成功"))
-  .catch(err => console.error("❌ 数据上传失败", err));
-    }
+  .then(res => {
+    console.log("✅ 数据上传成功，状态码：", res.status);
+    return res.json();
+  })
+  .then(data => console.log("✅ 返回内容：", data))
+  .catch(err => console.error("❌ 上传失败：", err));
 
     renderQuestion();
   </script>
