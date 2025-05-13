@@ -5,17 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>人生复盘测评</title>
   <style>
-    body { font-family: sans-serif; padding: 2rem; background: #f5f7fa; color: #333; }
-    .question { margin-bottom: 2rem; }
-    .options button {
-      display: block; margin: 0.5rem 0; padding: 1rem;
-      width: 100%; font-size: 1rem;
-      background: white; border: 1px solid #ccc; border-radius: 6px;
-    }
-    .hidden { display: none; }
-    #result { padding: 2rem; background: white; border-radius: 8px; text-align: center; }
-    #result img { max-width: 100%; border-radius: 10px; margin-top: 1rem; }
-    #restart { margin-top: 1.5rem; padding: 0.8rem 1.5rem; border: none; background: #007aff; color: white; border-radius: 5px; cursor: pointer; }
+    body { font-family: "HarmonyOS Sans", "Helvetica Neue", sans-serif;
+    background: linear-gradient(135deg, #f0f6ff, #eaf3fb);
+    margin: 0;
+    padding: 2rem;
+    color: #333;}
+    h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #007aff;
+  }
+
+  .question {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    transition: all 0.3s ease;
+  }
+
+  .question h2 {
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  .options button {
+    display: block;
+    margin: 1rem 0;
+    padding: 1rem;
+    font-size: 1rem;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 100%;
+    transition: all 0.2s ease;
+  }
+  .options button:hover {
+    background-color: #f0f8ff;
+    border-color: #007aff;
+    color: #007aff;
+  }
+  .options button:active {
+    transform: scale(0.98);
+    background-color: #e0f0ff;
+  }
+  .hidden {
+    display: none;
+  }
+   #result {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #result img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 1rem 0;
+  }
+
+  #restart {
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background: #007aff;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  #restart:hover {
+    background: #005fcc;
   </style>
 </head>
 <body>
