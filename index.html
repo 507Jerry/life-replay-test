@@ -239,8 +239,7 @@ function showQR() {
           scores[opt.tag]++;
           current++;
           if (current < questions.length) {
-            renderQuestion(document.getElementById("progress").innerText = `第 ${current + 1} / ${questions.length} 题`;
-);
+            renderQuestion();
           } else {
             showResult();
           }
