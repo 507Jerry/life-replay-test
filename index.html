@@ -176,8 +176,31 @@
         <button id='restart'>再测一次</button>
       `;
       document.getElementById("restart").onclick = () => location.reload();
-
-       
+   // 🔽 现在插入这段上传代码
+  fetch("https://api.sheety.co/7b136ddd068b2f5ee3c7063a6a760256/test/sheet1", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      sheet1: {
+        时间: new Date().toLocaleString(),
+        类型: maxTag,
+        冲动型: scores["冲动型"],
+        拖延型: scores["拖延型"],
+        内耗型: scores["内耗型"],
+        反复型: scores["反复型"],
+        成长型: scores["成长型"]
+      }
+    })
+  })
+  .then(res => {
+    console.log("✅ 数据上传成功，状态码：", res.status);
+    return res.json();
+  })
+  .then(data => console.log("✅ 返回内容：", data))
+  .catch(err => console.error("❌ 上传失败：", err));
+    }
     renderQuestion();
   </script>
 
