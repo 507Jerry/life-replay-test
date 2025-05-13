@@ -91,16 +91,26 @@
 </head>
 <body>
   
-<img src="logo.png" alt="人生复盘 LOGO" style="height:40px; margin-bottom:1rem;">
 <div style="text-align: center;">
     <img src="logo.png" alt="人生复盘 LOGO" style="height: 50px; margin-bottom: 0.5rem;" />
     <h1 style="font-size: 2rem; font-weight: bold; color: #007aff;">你是哪种人生错误循环者？</h1>
   </div>
-  
+  <div id="progress" style="text-align:center; margin: 1rem 0; font-size: 1rem; color: #555;"></div>
   <div id="quiz"></div>
   <div id="result" class="hidden"></div>
 
   <script>
+
+    function copyLink() {
+  navigator.clipboard.writeText(location.href).then(() => {
+    alert("链接已复制，快去分享给朋友吧！");
+  });
+}
+
+function showQR() {
+  document.getElementById("qr").style.display = "block";
+}
+
     const questions = [
       { text: "当你面对突发事件时，你会：", options: [
         { text: "马上做决定", tag: "冲动型" },
@@ -229,7 +239,8 @@
           scores[opt.tag]++;
           current++;
           if (current < questions.length) {
-            renderQuestion();
+            renderQuestion(document.getElementById("progress").innerText = `第 ${current + 1} / ${questions.length} 题`;
+);
           } else {
             showResult();
           }
@@ -254,6 +265,14 @@
       <h3 style="font-size: 1.2rem; color: #007aff; margin-bottom: 0.5rem;">🌱 行动建议</h3>
       <p style="font-size: 1rem; color: #444; line-height: 1.6;">${data.suggestion}</p>
     </div>
+<div style="margin-top: 2rem;">
+  <p style="font-weight:bold;">📣 分享这个测试给朋友：</p>
+  <button onclick="copyLink()" style="padding: 0.5rem 1rem; margin: 0.3rem;">复制测试链接</button>
+  <button onclick="showQR()" style="padding: 0.5rem 1rem; margin: 0.3rem;">微信二维码</button>
+</div>
+<div id="qr" style="margin-top: 1rem; display:none;">
+  <img src="your-wechat-qr.png" alt="微信二维码" style="width: 150px;">
+</div>
 
     <button id='restart' style="margin-top: 2rem;">再测一次</button>
   </div>
