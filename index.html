@@ -328,16 +328,15 @@
     const btn = document.createElement("button");
     btn.textContent = opt.text;
     btn.onclick = () => {
-  scores[opt.tag] = (scores[opt.tag] || 0) + 1; // 原有逻辑（打分）
-  userAnswers.push(opt.text); // ✅ 新增：记录选项文本
+  scores[opt.tag] = (scores[opt.tag] || 0) + 1;
+  userAnswers.push(opt.text);
   current++;
   if (current < questions.length) {
     renderQuestion();
   } else {
-    showResult(); // 最后调用结果页
+    showResult();
   }
 };
-
     optionsDiv.appendChild(btn);
   });
 
