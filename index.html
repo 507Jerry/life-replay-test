@@ -329,8 +329,8 @@
     btn.textContent = opt.text;
     btn.onclick = () => {
       scores[opt.tag] = (scores[opt.tag] || 0) + 1;
-      current++;
       userAnswers.push(opt.text);
+      current++;
       if (current < questions.length) {
         renderQuestion();
       } else {
@@ -381,7 +381,7 @@
     </div>
   </div>
 `;
-      document.getElementById("restart").onclick = () => location.reload();
+  document.getElementById("restart").onclick = () => location.reload();
    uploadAnswersToSheet();
 }
     
