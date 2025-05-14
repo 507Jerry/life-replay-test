@@ -320,29 +320,47 @@
     };
     
     function renderQuestion() {
+  const q = questions[current];
+  const quiz = document.getElementById("quiz");
 
-      document.getElementById("progress").innerText = `第 ${current + 1} / ${questions.length} 题`;
+  quiz.innerHTML = `
+    <div class="question">
+      <h2>${q.text}</h2>
+      <div class="options"></div>
+    </div>
+  `;
 
-      const q = questions[current];
-      quiz.innerHTML = `<div class="question"><h2>${q.text}</h2><div class="options"></div></div>`;
-      const optionsDiv = quiz.querySelector(".options");
-      q.options.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.textContent = opt.text;
-        btn.onclick = () => {
-  scores[opt.tag] = (scores[opt.tag] || 0) + 1; // 原有逻辑（打分）
-  userAnswers.push(opt.text); // ✅ 新增：记录选项文本
-  current++;
-  if (current < questions.length) {
-    renderQuestion();
-  } else {
-    showResult(); // 最后调用结果页
+  const optionsDiv = quiz.querySelector(".options");
+
+  q.options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.textContent = opt.text;
+
+    btn.onclick = () => {
+      // ✅ 记录类型得分（用于最终结果分类）
+      scores[opt.tag] = (scores[opt.tag] || 0) + 1;
+
+      // ✅ 记录本题用户选择的文本（用于 Google Sheet 上传）
+      userAnswers.push(opt.text);
+
+      current++;
+      if (current < questions.length) {
+        renderQuestion();
+      } else {
+        showResult(); // 测试结束
+      }
+    };
+
+    optionsDiv.appendChild(btn);
+  });
+
+  // ✅ 可选：显示进度
+  const progress = document.getElementById("progress");
+  if (progress) {
+    progress.innerText = `第 ${current + 1} / ${questions.length} 题`;
   }
-};
+}
 
-        optionsDiv.appendChild(btn);
-      });
-    }
 
   function showResult() {
       quiz.classList.add("hidden");
