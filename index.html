@@ -227,7 +227,7 @@
         suggestion: "建议你保持每月一次的复盘写作，记录成长点与失败点，系统梳理成长轨迹。"
       }
     };
-
+    
     function renderQuestion() {
 
       document.getElementById("progress").innerText = `第 ${current + 1} / ${questions.length} 题`;
@@ -305,16 +305,37 @@ fetch("https://api.sheety.co/7b136ddd068b2f5ee3c7063a6a760256/test/sheet1", {
 .then(data => console.log("✅ 返回内容：", data))
 .catch(err => console.error("❌ 上传失败：", err));
 
+<div id="shareBlock" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd;">
+  <p style="font-weight:bold;">📣 分享给朋友：</p>
+  <button onclick="copyLink()" style="padding: 0.5rem 1rem; margin: 0.3rem;">复制测试链接</button>
+  <button onclick="showQR()" style="padding: 0.5rem 1rem; margin: 0.3rem;">显示微信二维码</button>
+  <button onclick="showText()" style="padding: 0.5rem 1rem; margin: 0.3rem;">获取朋友圈文案</button>
+
+  <div id="qr" style="margin-top: 1rem; display:none;">
+    <img src="your-wechat-qr.png" alt="微信二维码" style="width: 150px;">
+    <p style="font-size:0.85rem; color:#777;">长按识别二维码</p>
+  </div>
+
+  <div id="shareText" style="margin-top: 1rem; display:none; background: #f8f9fb; padding: 1rem; border-radius: 8px; font-size: 0.9rem; color: #333;">
+    🌟测了一个超准的人生复盘系统<br>
+    我是【内耗型】，看看你是哪一类？<br>
+    🔗 ${location.href}
+  </div>
+</div>
 
     }
 function copyLink() {
   navigator.clipboard.writeText('https://life-test-replay.vercel.app/').then(() => {
-    alert("链接已复制，快去分享给朋友吧！");
+    alert("✅ 链接已复制，快去发朋友圈或微信吧！");
   });
 }
 
 function showQR() {
   document.getElementById("qr").style.display = "block";
+}
+
+function showText() {
+  document.getElementById("shareText").style.display = "block";
 }
 
     renderQuestion();
