@@ -105,6 +105,18 @@
   <div id="result" class="hidden"></div>
 
   <script>
+    
+    <<body>
+
+  <div style="text-align: center;">
+    <img src="logo.png" alt="人生复盘 LOGO" style="height: 50px; margin-bottom: 0.5rem;" />
+    <h1 style="font-size: 2rem; font-weight: bold; color: #007aff;">人生复盘测评</h1>
+  </div>
+
+  <div id="quiz"></div>
+  <div id="result" class="hidden"></div>
+
+
     const questions = [
       { text: "当你面对突发事件时，你会：", options: [
         { text: "马上做决定", tag: "冲动型" },
@@ -248,13 +260,20 @@
       const data = descriptions[maxTag];
       result.classList.remove("hidden");
       result.innerHTML = `
-        <h2>${data.title}</h2>
-        <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br>
-        <p>${data.desc}</p>
-        <h3>🌱 行动建议：</h3>
-        <p>${data.suggestion}</p>
-        <button id='restart'>再测一次</button>
-      `;
+  <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <h2 style="font-size: 1.5rem; color: #007aff; margin-bottom: 1rem;">${data.title}</h2>
+    <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图" style="max-width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+    <p style="font-size: 1.1rem; color: #333; line-height: 1.6;">${data.desc}</p>
+    
+    <div style="background: #f5faff; padding: 1.2rem; border-radius: 12px; margin-top: 2rem;">
+      <h3 style="font-size: 1.2rem; color: #007aff; margin-bottom: 0.5rem;">🌱 行动建议</h3>
+      <p style="font-size: 1rem; color: #444; line-height: 1.6;">${data.suggestion}</p>
+    </div>
+
+    <button id='restart' style="margin-top: 2rem;">再测一次</button>
+  </div>
+`;
+
       document.getElementById("restart").onclick = () => location.reload();
       // ✅ 上传测试结果到 Google Sheets（通过 Sheety API）
 fetch("https://api.sheety.co/7b136ddd068b2f5ee3c7063a6a760256/test/sheet1", {
