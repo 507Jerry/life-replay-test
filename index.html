@@ -307,6 +307,15 @@ fetch("https://api.sheety.co/7b136ddd068b2f5ee3c7063a6a760256/test/sheet1", {
 
 
     }
+function copyLink() {
+  navigator.clipboard.writeText('https://life-test-replay.vercel.app/').then(() => {
+    alert("链接已复制，快去分享给朋友吧！");
+  });
+}
+
+function showQR() {
+  document.getElementById("qr").style.display = "block";
+}
 
     renderQuestion();
   </script>
