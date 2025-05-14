@@ -259,7 +259,7 @@
       const maxTag = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
       const data = descriptions[maxTag];
       result.classList.remove("hidden");
-      result.innerHTML = `
+      result.innerHTML = 
   <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
     <h2 style="font-size: 1.5rem; color: #007aff; margin-bottom: 1rem;">${data.title}</h2>
     <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图" style="max-width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
@@ -272,7 +272,7 @@
 
     <button id='restart' style="margin-top: 2rem;">再测一次</button>
   </div>
-`;
+;
 
       document.getElementById("restart").onclick = () => location.reload();
       // ✅ 上传测试结果到 Google Sheets（通过 Sheety API）
