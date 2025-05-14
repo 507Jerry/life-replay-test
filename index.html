@@ -97,6 +97,8 @@
   }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 </head>
 <body>
 
@@ -257,13 +259,18 @@
       const data = descriptions[maxTag];
       result.classList.remove("hidden");
       result.innerHTML = `
-  <h2>${data.title}</h2>
-  <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br>
-  <p>${data.desc}</p>
-  <h3>🌱 行动建议：</h3>
+  <div id="resultCard" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <h2 style="font-size: 1.5rem; color: #007aff; margin-bottom: 1rem;">${data.title}</h2>
+  <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图" style="max-width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+    <p style="font-size: 1.1rem; color: #333; line-height: 1.6;">${data.desc}</p>
+  <div style="background: #f5faff; padding: 1.2rem; border-radius: 12px; margin-top: 2rem;">
+      <h3 style="font-size: 1.2rem; color: #007aff; margin-bottom: 0.5rem;">🌱 行动建议</h3>
+      <p style="font-size: 1rem; color: #444; line-height: 1.6;">${data.suggestion}</p>
+    </div>
   <p>${data.suggestion}</p>
-  <button id='restart'>再测一次</button>
-
+  <button id='restart' style="margin-top: 2rem;">再测一次</button>
+ <button onclick="downloadResult()" style="margin-left:1rem; background:#00c28b;">保存为图片</button>
+  </div>
   <div id="shareBlock" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd;">
     <p style="font-weight:bold;">📣 分享给朋友：</p>
     <button onclick="copyLink()" style="padding: 0.5rem 1rem; margin: 0.3rem;">复制测试链接</button>
