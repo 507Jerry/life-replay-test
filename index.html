@@ -253,13 +253,19 @@
       const data = descriptions[maxTag];
       result.classList.remove("hidden");
       result.innerHTML = `
-        <h2>${data.title}</h2>
-        <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br>
-        <p>${data.desc}</p>
-        <h3>🌱 行动建议：</h3>
-        <p>${data.suggestion}</p>
-        <button id='restart'>再测一次</button>
-      `;
+    <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <h2 style="font-size: 1.5rem; color: #007aff; margin-bottom: 1rem;">${data.title}</h2>
+    <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图" style="max-width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
+    <p style="font-size: 1.1rem; color: #333; line-height: 1.6;">${data.desc}</p>
+    
+    <div style="background: #f5faff; padding: 1.2rem; border-radius: 12px; margin-top: 2rem;">
+      <h3 style="font-size: 1.2rem; color: #007aff; margin-bottom: 0.5rem;">🌱 行动建议</h3>
+      <p style="font-size: 1rem; color: #444; line-height: 1.6;">${data.suggestion}</p>
+    </div>
+
+    <button id='restart' style="margin-top: 2rem;">再测一次</button>
+  </div>
+`;
       document.getElementById("restart").onclick = () => location.reload();
 
     // ✅ 上传测试结果到 Google Sheets（通过 Sheety API）
