@@ -330,14 +330,16 @@
         const btn = document.createElement("button");
         btn.textContent = opt.text;
         btn.onclick = () => {
-          scores[opt.tag]++;
-          current++;
-          if (current < questions.length) {
-            renderQuestion();
-          } else {
-            showResult();
-          }
-        };
+  scores[opt.tag] = (scores[opt.tag] || 0) + 1; // 原有逻辑（打分）
+  userAnswers.push(opt.text); // ✅ 新增：记录选项文本
+  current++;
+  if (current < questions.length) {
+    renderQuestion();
+  } else {
+    showResult(); // 最后调用结果页
+  }
+};
+
         optionsDiv.appendChild(btn);
       });
     }
@@ -399,24 +401,12 @@ function uploadAnswersToSheet() {
   const answers = {};
 
   trackedQuestions.forEach(({ field, index }) => {
-    const q = questions[index];
-    let selectedText = "未答";
-
-    for (let opt of q.options) {
-      if (scores[opt.tag] > 0 && opt.text) {
-        selectedText = opt.text;
-        break;
-      }
-    }
-
-    answers[field] = selectedText;
+    answers[field] = userAnswers[index] || "未答";
   });
 
-  // ✅ 添加时间戳字段
-  const now = new Date();
-  answers.timestamp = now.toISOString(); // 格式: "2025-05-14T10:33:21.123Z"
+  // 添加时间戳
+  answers.timestamp = new Date().toISOString();
 
-  // ✅ 上传到 Google Sheets
   fetch("https://api.sheety.co/7b136ddd068b2f5ee3c7063a6a760256/test/sheet1", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -430,6 +420,7 @@ function uploadAnswersToSheet() {
       console.error("❌ 数据上传失败：", err);
     });
 }
+
 
 
   
