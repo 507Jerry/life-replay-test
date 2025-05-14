@@ -257,25 +257,29 @@
       const data = descriptions[maxTag];
       result.classList.remove("hidden");
       result.innerHTML = `
-    <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-    <h2 style="font-size: 1.5rem; color: #007aff; margin-bottom: 1rem;">${data.title}</h2>
-    <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图" style="max-width: 100%; border-radius: 12px; margin-bottom: 1rem;" />
-    <p style="font-size: 1.1rem; color: #333; line-height: 1.6;">${data.desc}</p>
-    
-    <div style="background: #f5faff; padding: 1.2rem; border-radius: 12px; margin-top: 2rem;">
-      <h3 style="font-size: 1.2rem; color: #007aff; margin-bottom: 0.5rem;">🌱 行动建议</h3>
-      <p style="font-size: 1rem; color: #444; line-height: 1.6;">${data.suggestion}</p>
-    </div>
-<div style="margin-top: 2rem;">
-  <p style="font-weight:bold;">📣 分享这个测试给朋友：</p>
-  <button onclick="copyLink()" style="padding: 0.5rem 1rem; margin: 0.3rem;">复制测试链接</button>
-  <button onclick="showQR()" style="padding: 0.5rem 1rem; margin: 0.3rem;">微信二维码</button>
-</div>
-<div id="qr" style="margin-top: 1rem; display:none;">
-  <img src="your-wechat-qr.png" alt="微信二维码" style="width: 150px;">
-</div>
+  <h2>${data.title}</h2>
+  <img src="${imageMap[maxTag]}" alt="${maxTag} 结果图"><br>
+  <p>${data.desc}</p>
+  <h3>🌱 行动建议：</h3>
+  <p>${data.suggestion}</p>
+  <button id='restart'>再测一次</button>
 
-    <button id='restart' style="margin-top: 2rem;">再测一次</button>
+  <div id="shareBlock" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd;">
+    <p style="font-weight:bold;">📣 分享给朋友：</p>
+    <button onclick="copyLink()" style="padding: 0.5rem 1rem; margin: 0.3rem;">复制测试链接</button>
+    <button onclick="showQR()" style="padding: 0.5rem 1rem; margin: 0.3rem;">显示微信二维码</button>
+    <button onclick="showText()" style="padding: 0.5rem 1rem; margin: 0.3rem;">获取朋友圈文案</button>
+
+    <div id="qr" style="margin-top: 1rem; display:none;">
+      <img src="your-wechat-qr.png" alt="微信二维码" style="width: 150px;">
+      <p style="font-size:0.85rem; color:#777;">长按识别二维码</p>
+    </div>
+
+    <div id="shareText" style="margin-top: 1rem; display:none; background: #f8f9fb; padding: 1rem; border-radius: 8px; font-size: 0.9rem; color: #333;">
+      🌟测了一个超准的人生复盘系统<br>
+      我是【${maxTag}】，看看你是哪一类？<br>
+      🔗 ${location.href}
+    </div>
   </div>
 `;
       document.getElementById("restart").onclick = () => location.reload();
