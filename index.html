@@ -112,7 +112,7 @@
   <div id="result" class="hidden"></div>
 
   <script>
-
+   const userAnswers = [];
    const questions = [
   {
     text: "面对突发事件时你通常会？",
@@ -330,6 +330,7 @@
     btn.onclick = () => {
       scores[opt.tag] = (scores[opt.tag] || 0) + 1;
       current++;
+      userAnswers.push(opt.text);
       if (current < questions.length) {
         renderQuestion();
       } else {
