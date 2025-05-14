@@ -113,80 +113,169 @@
 
   <script>
 
-    const questions = [
-      { text: "当你面对突发事件时，你会：", options: [
-        { text: "马上做决定", tag: "冲动型" },
-        { text: "拖到不能再拖才应对", tag: "拖延型" },
-        { text: "先焦虑一番再勉强应对", tag: "内耗型" },
-        { text: "回避，不处理", tag: "反复型" },
-      ]},
-      { text: "分手/失业后，你的第一个反应是：", options: [
-        { text: "开始新的尝试", tag: "成长型" },
-        { text: "找前任/旧老板复盘问题", tag: "成长型" },
-        { text: "自责+沉溺负面情绪", tag: "内耗型" },
-        { text: "花钱/刷视频缓解", tag: "冲动型" },
-      ]},
-      { text: "每次失败后，你会：", options: [
-        { text: "反复告诉自己“我不该这样做”", tag: "内耗型" },
-        { text: "下次还做一样的事", tag: "反复型" },
-        { text: "写总结并避免", tag: "成长型" },
-        { text: "骂自己几句然后继续前进", tag: "冲动型" },
-      ]},
-      { text: "面对需要选择的购物决策，你：", options: [
-        { text: "秒下单，事后后悔", tag: "冲动型" },
-        { text: "看了又看，迟迟不下单", tag: "拖延型" },
-        { text: "抓一个朋友咨询后照做", tag: "反复型" },
-        { text: "做预算、对比后再买", tag: "成长型" },
-      ]},
-      { text: "你和伴侣吵架后，你会：", options: [
-        { text: "拉黑/冷处理", tag: "冲动型" },
-        { text: "忍着但心理内耗", tag: "内耗型" },
-        { text: "每次都这样，也习惯了", tag: "反复型" },
-        { text: "回想争执根源、改善沟通方式", tag: "成长型" },
-      ]},
-      { text: "面对重要考试/面试，你：", options: [
-        { text: "临时抱佛脚", tag: "冲动型" },
-        { text: "拖延准备，直到前一天才行动", tag: "拖延型" },
-        { text: "焦虑+失眠+脑内过度模拟", tag: "内耗型" },
-        { text: "制定计划、按部就班复习", tag: "成长型" },
-      ]},
-      { text: "如果过去3个月你做错了一件事，你更可能：", options: [
-        { text: "忘了", tag: "冲动型" },
-        { text: "重复做同样的事", tag: "反复型" },
-        { text: "会复盘，但下次不一定改", tag: "内耗型" },
-        { text: "写下来避免重犯", tag: "成长型" },
-      ]},
-      { text: "每次情绪低落时你会：", options: [
-        { text: "玩手机/喝酒/购物", tag: "冲动型" },
-        { text: "拖着不处理", tag: "拖延型" },
-        { text: "一边想太多一边什么都不做", tag: "内耗型" },
-        { text: "找人倾诉或记录情绪原因", tag: "成长型" },
-      ]},
-      { text: "你觉得最常困住你的是？", options: [
-        { text: "忍不住行动", tag: "冲动型" },
-        { text: "拖延+错过时机", tag: "拖延型" },
-        { text: "情绪内耗过重", tag: "内耗型" },
-        { text: "总是回到旧问题", tag: "反复型" },
-      ]},
-      { text: "如果人生可以回溯，你最希望改的是？", options: [
-        { text: "那些冲动的决定", tag: "冲动型" },
-        { text: "曾经浪费的时间", tag: "拖延型" },
-        { text: "犹豫+纠结错失的机会", tag: "内耗型" },
-        { text: "一直重复犯的错误", tag: "反复型" },
-      ]},
-      { text: "面对他人建议你通常：", options: [
-        { text: "听一半就按自己方式做", tag: "冲动型" },
-        { text: "拖着不动", tag: "拖延型" },
-        { text: "照做却内心抗拒", tag: "内耗型" },
-        { text: "结合现实后理性采纳", tag: "成长型" },
-      ]},
-      { text: "你是否有写过类似复盘总结的记录？", options: [
-        { text: "没写过", tag: "反复型" },
-        { text: "写过1~2次后放弃了", tag: "内耗型" },
-        { text: "正在持续记录中", tag: "成长型" },
-        { text: "每次做完就忘", tag: "冲动型" },
-      ]},
-    ];
+   const questions = [
+  {
+    text: "面对突发事件时你通常会？",
+    options: [
+      { text: "立即行动", tag: "冲动型" },
+      { text: "拖到不能再拖", tag: "拖延型" },
+      { text: "焦虑再勉强处理", tag: "内耗型" },
+      { text: "完全不处理", tag: "反复型" }
+    ]
+  },
+  {
+    text: "分手/失业后的第一反应？",
+    options: [
+      { text: "立刻找下一条路", tag: "成长型" },
+      { text: "情绪低落+责备自己", tag: "内耗型" },
+      { text: "不处理当作没发生", tag: "冲动型" },
+      { text: "翻旧账/回头再犯", tag: "反复型" }
+    ]
+  },
+  {
+    text: "购物决策时，你更可能？",
+    options: [
+      { text: "秒买事后后悔", tag: "冲动型" },
+      { text: "研究半天买不下手", tag: "拖延型" },
+      { text: "想太多选不出", tag: "内耗型" },
+      { text: "被朋友一句话影响", tag: "反复型" }
+    ]
+  },
+  {
+    text: "你做过最常复盘的事情是？",
+    options: [
+      { text: "财务支出", tag: "成长型" },
+      { text: "感情关系", tag: "成长型" },
+      { text: "职业选择", tag: "成长型" },
+      { text: "几乎没复盘过", tag: "反复型" }
+    ]
+  },
+  {
+    text: "你最常困住自己的行为是？",
+    options: [
+      { text: "冲动", tag: "冲动型" },
+      { text: "拖延", tag: "拖延型" },
+      { text: "内耗", tag: "内耗型" },
+      { text: "重复", tag: "反复型" }
+    ]
+  },
+  {
+    text: "过去一年是否主动总结过错误？",
+    options: [
+      { text: "从未", tag: "反复型" },
+      { text: "有意识但没形成习惯", tag: "内耗型" },
+      { text: "有过2次左右", tag: "成长型" },
+      { text: "每月都有", tag: "成长型" }
+    ]
+  },
+  {
+    text: "你倾向如何看待复盘？",
+    options: [
+      { text: "觉得麻烦", tag: "冲动型" },
+      { text: "害怕面对错误", tag: "内耗型" },
+      { text: "想做但不会写", tag: "拖延型" },
+      { text: "是成长过程", tag: "成长型" }
+    ]
+  },
+  {
+    text: "你是哪类「卡住人生」的人？",
+    options: [
+      { text: "情绪困住我", tag: "内耗型" },
+      { text: "行为失控我", tag: "冲动型" },
+      { text: "总掉进同样陷阱", tag: "反复型" },
+      { text: "不能开始坚持", tag: "拖延型" }
+    ]
+  },
+  {
+    text: "是否记录过任何复盘？",
+    options: [
+      { text: "写在日记本/备忘录", tag: "成长型" },
+      { text: "用 Notion / App", tag: "成长型" },
+      { text: "从未尝试过", tag: "反复型" }
+    ]
+  },
+  {
+    text: "如果有 App 引导复盘你会？",
+    options: [
+      { text: "愿意尝试", tag: "成长型" },
+      { text: "不感兴趣", tag: "反复型" },
+      { text: "觉得有用但不会主动用", tag: "内耗型" }
+    ]
+  },
+  {
+    text: "哪类功能你最想使用？",
+    options: [
+      { text: "每月总结提醒", tag: "成长型" },
+      { text: "自动生成建议", tag: "成长型" },
+      { text: "模板化引导", tag: "拖延型" },
+      { text: "都不感兴趣", tag: "反复型" }
+    ]
+  },
+  {
+    text: "你最关心复盘的内容是？",
+    options: [
+      { text: "职业/金钱", tag: "成长型" },
+      { text: "关系/情绪", tag: "内耗型" },
+      { text: "习惯/自控力", tag: "拖延型" },
+      { text: "其他", tag: "反复型" }
+    ]
+  },
+  {
+    text: "你偏好什么记录方式？",
+    options: [
+      { text: "自由书写", tag: "成长型" },
+      { text: "选择+短答", tag: "拖延型" },
+      { text: "AI引导", tag: "成长型" },
+      { text: "语音转文字", tag: "冲动型" }
+    ]
+  },
+  {
+    text: "你写完一段反思后，希望得到什么回馈？",
+    options: [
+      { text: "有人总结重点", tag: "成长型" },
+      { text: "看看也行", tag: "内耗型" },
+      { text: "不需要反馈", tag: "反复型" },
+      { text: "不想被解读", tag: "内耗型" }
+    ]
+  },
+  {
+    text: "若系统整理成报告，你偏好哪种呈现？",
+    options: [
+      { text: "图卡（关键词+趋势）", tag: "成长型" },
+      { text: "人群案例", tag: "成长型" },
+      { text: "问答引导", tag: "拖延型" },
+      { text: "我自己整理", tag: "反复型" }
+    ]
+  },
+  {
+    text: "多久愿意回顾一次状态？",
+    options: [
+      { text: "每月一次最好提醒", tag: "成长型" },
+      { text: "有事件发生后", tag: "冲动型" },
+      { text: "想起来就看", tag: "反复型" },
+      { text: "不喜欢回顾", tag: "反复型" }
+    ]
+  },
+  {
+    text: "你如何整理自己的思维？",
+    options: [
+      { text: "靠直觉想", tag: "冲动型" },
+      { text: "偶尔写日记", tag: "成长型" },
+      { text: "靠结构工具", tag: "成长型" },
+      { text: "不整理", tag: "反复型" }
+    ]
+  },
+  {
+    text: "面对重复问题时希望哪种方式帮助？",
+    options: [
+      { text: "被问关键问题", tag: "成长型" },
+      { text: "看过往记录", tag: "成长型" },
+      { text: "看别人案例", tag: "成长型" },
+      { text: "自己来", tag: "反复型" }
+    ]
+  }
+];
+
 
     const scores = { "冲动型": 0, "拖延型": 0, "内耗型": 0, "反复型": 0, "成长型": 0 };
     let current = 0;
@@ -290,30 +379,62 @@
 `;
       document.getElementById("restart").onclick = () => location.reload();
 
-    // ✅ 上传测试结果到 Google Sheets（通过 Sheety API）
-fetch("https://api.sheety.co/7b136ddd068b2f5ee3c7063a6a760256/test/sheet1", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    sheet1: {
-      时间: new Date().toLocaleString(),
-      类型: maxTag,
-      冲动型: scores["冲动型"],
-      拖延型: scores["拖延型"],
-      内耗型: scores["内耗型"],
-      反复型: scores["反复型"],
-      成长型: scores["成长型"]
+function uploadAnswersToSheet() {
+  const trackedQuestions = [
+    { field: "fav_review_topic", index: 3 },
+    { field: "review_frequency", index: 5 },
+    { field: "review_habit", index: 8 },
+    { field: "app_acceptance", index: 9 },
+    { field: "preferred_features", index: 10 },
+    { field: "focus_area", index: 11 },
+    { field: "input_preference", index: 12 },
+    { field: "feedback_desire", index: 13 },
+    { field: "report_format_preference", index: 14 },
+    { field: "review_interval", index: 15 },
+    { field: "thinking_style", index: 16 },
+    { field: "support_expectation", index: 17 }
+  ];
+
+  const answers = {};
+
+  trackedQuestions.forEach(({ field, index }) => {
+    const q = questions[index];
+    let selectedText = "未答";
+
+    for (let opt of q.options) {
+      if (scores[opt.tag] > 0 && opt.text) {
+        selectedText = opt.text;
+        break;
+      }
     }
+
+    answers[field] = selectedText;
+  });
+
+  // ✅ 添加时间戳字段
+  const now = new Date();
+  answers.timestamp = now.toISOString(); // 格式: "2025-05-14T10:33:21.123Z"
+
+  // ✅ 上传到 Google Sheets
+  fetch("https://api.sheety.co/7b136ddd068b2f5ee3c7063a6a760256/test/sheet1", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ sheet1: answers })
   })
-})
-.then(res => {
-  console.log("✅ 数据上传成功，状态码：", res.status);
-  return res.json();
-})
-.then(data => console.log("✅ 返回内容：", data))
-.catch(err => console.error("❌ 上传失败：", err));
+    .then(res => res.json())
+    .then(data => {
+      console.log("✅ 数据上传成功：", data);
+    })
+    .catch(err => {
+      console.error("❌ 数据上传失败：", err);
+    });
+}
+
+}
+
+   uploadAnswersToSheet();
+}
+
 
 
     }
