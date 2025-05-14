@@ -378,7 +378,8 @@
   </div>
 `;
       document.getElementById("restart").onclick = () => location.reload();
-
+   uploadAnswersToSheet();
+}
 function uploadAnswersToSheet() {
   const trackedQuestions = [
     { field: "fav_review_topic", index: 3 },
@@ -430,14 +431,8 @@ function uploadAnswersToSheet() {
     });
 }
 
-}
 
-   uploadAnswersToSheet();
-}
-
-
-
-    }
+  
 function copyLink() {
   navigator.clipboard.writeText('https://life-test-replay.vercel.app/').then(() => {
     alert("✅ 链接已复制，快去发朋友圈或微信吧！");
